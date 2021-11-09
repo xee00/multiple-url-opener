@@ -2,6 +2,8 @@
   "name": "multiple-url-opener",
   "version": "0.1.0",
   "private": true,
+  "homepage": "https://xee00.github.io/multiple-url-opener/",
+  "start_url": ".",
   "dependencies": {
     "@testing-library/jest-dom": "^5.15.0",
     "@testing-library/react": "^11.2.7",
@@ -17,13 +19,10 @@
   },
   "scripts": {
     "start": "npm run watch:css && react-scripts start",
-    "build": "npm run watch:css && react-scripts build && mv build docs",
+    "build": "rm -rf docs && npm run watch:css && react-scripts build && mv build docs",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
-    "watch:css": "postcss src/styles/tailwind.css -o src/styles/output.css",
-    "homepage": "https://xee00.github.io/multiple-url-opener/",
-    "predeploy": "npm run build",
-    "deploy": "gh-pages -d build"
+    "watch:css": "postcss src/styles/tailwind.css -o src/styles/output.css"
   },
   "eslintConfig": {
     "extends": [
