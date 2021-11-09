@@ -1,2 +1,0 @@
-# Multiple URL Opener
-
