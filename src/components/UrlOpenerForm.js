@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-
+import Slider from "./Slider"
 class UrlOpenerForm extends Component {
   constructor(props) {
     super(props);
@@ -9,11 +9,16 @@ class UrlOpenerForm extends Component {
     urls: [],
     number_of_urls: 0,
     number_of_valid_urls: 0,
+    wait_timer: 0
   };
 
   sum = (array) => {
     return array.reduce((a, b) => a + b, 0);
   };
+
+  setWaitTimer = (time_seconds) => {
+    this.state.wait_timer = time_seconds
+  }
 
   // credits: https://stackoverflow.com/a/5717133
   isValidURL = (str) => {
@@ -39,10 +44,14 @@ class UrlOpenerForm extends Component {
 
   open = () => {
     var urls = this.state.urls;
+    let counter = 0
     for (var i = 0; i < urls.length; i++) {
       let url = this.addProtocolIfMissing(urls[i]);
       if (this.isValidURL(url)) {
-        window.open(url);
+        setTimeout(function() {
+          window.open(url);
+        }, this.state.wait_timer * 1000 * counter);
+        counter += 1
       }
     }
   };
@@ -90,6 +99,9 @@ class UrlOpenerForm extends Component {
             onInput={this.handleInput}
           ></div>
         </div>
+        <div>
+          <Slider updateValue={this.setWaitTimer}></Slider>
+          </div>
         <div className="flex justify-between">
           <label className="block text-gray-400 text-sm mb-2">
             {this.state.number_of_urls} URLs ({this.state.number_of_valid_urls}{" "}
