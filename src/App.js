@@ -10,11 +10,11 @@ class App extends React.Component {
   }
   render() {
     return (
-      <div className="bg-gray-800 w-screen h-screen">
+      <div className="">
         <Navbar></Navbar>
-        <div className="absolute left-0 top-0 w-screen">
-          <div className=" flex items-center justify-center h-screen">
-            <div className="w-3/6">
+        <div className="">
+          <div className=" flex justify-center">
+            <div className="w-11/12 lg:w-5/6 xl:w-4/6 2xl:w-3/6 ">
               <h1 className="text-xl mb-4 text-gray-400">
                 Enter URLs you want to open
               </h1>

@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import Slider from "./Slider"
+import Slider from "./Slider";
 class UrlOpenerForm extends Component {
   constructor(props) {
     super(props);
@@ -9,7 +9,7 @@ class UrlOpenerForm extends Component {
     urls: [],
     number_of_urls: 0,
     number_of_valid_urls: 0,
-    wait_timer: 0
+    wait_timer: 0,
   };
 
   sum = (array) => {
@@ -17,12 +17,12 @@ class UrlOpenerForm extends Component {
   };
 
   setWaitTimer = (time_seconds) => {
-    this.state.wait_timer = time_seconds
-  }
+    this.state.wait_timer = time_seconds;
+  };
 
   // credits: https://stackoverflow.com/a/5717133
   isValidURL = (str) => {
-    str = str.trim()
+    str = str.trim();
     var pattern = new RegExp(
       "^(https?:\\/\\/)?" + // protocol
         "((([a-z\\d]([a-z\\d-]*[a-z\\d])*)\\.)+[a-z]{2,}|" + // domain name
@@ -45,14 +45,14 @@ class UrlOpenerForm extends Component {
 
   open = () => {
     var urls = this.state.urls;
-    let counter = 0
+    let counter = 0;
     for (var i = 0; i < urls.length; i++) {
       let url = this.addProtocolIfMissing(urls[i]);
       if (this.isValidURL(url)) {
-        setTimeout(function() {
+        setTimeout(function () {
           window.open(url);
         }, this.state.wait_timer * 1000 * counter);
-        counter += 1
+        counter += 1;
       }
     }
   };
@@ -91,28 +91,33 @@ class UrlOpenerForm extends Component {
   render() {
     return (
       <form className="w-full">
-        <div className="mb-4">
-          <div
-            className="bg-white h-96 p-2  bg-gray-300"
-            contentEditable={true}
-            onInput={this.handleInput}
-          ></div>
-        </div>
-        <div>
-          <Slider updateValue={this.setWaitTimer}></Slider>
-          </div>
+            <div className="mb-4">
+              <div
+                className="bg-white h-96 p-2  bg-gray-300"
+                contentEditable={true}
+                onInput={this.handleInput}
+              ></div>
+            </div>
         <div className="flex justify-between">
-          <label className="block text-gray-400 text-sm mb-2">
-            {this.state.number_of_urls} URLs ({this.state.number_of_valid_urls}{" "}
-            valid, not valid ones will be skipped)
-          </label>
-          <button
-            className="bg-blue-600 hover:bg-blue-700 text-white py-2 px-4 rounded focus:outline-none focus:shadow-outline"
-            type="button"
-            onClick={this.open}
-          >
-            Open
-          </button>
+          <div>
+            <div>
+              <Slider updateValue={this.setWaitTimer}></Slider>
+            </div>
+            <label className="block text-gray-400 text-sm mb-2 mt-2">
+              {this.state.number_of_urls} URLs (
+              {this.state.number_of_valid_urls} valid, not valid ones will be
+              skipped)
+            </label>
+          </div>
+          <div>
+            <button
+              className="bg-blue-600 hover:bg-blue-700 text-white py-2 px-4 rounded focus:outline-none focus:shadow-outline "
+              type="button"
+              onClick={this.open}
+            >
+              Open
+            </button>
+          </div>
         </div>
       </form>
     );
