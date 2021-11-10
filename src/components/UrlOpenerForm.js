@@ -22,6 +22,7 @@ class UrlOpenerForm extends Component {
 
   // credits: https://stackoverflow.com/a/5717133
   isValidURL = (str) => {
+    str = str.trim()
     var pattern = new RegExp(
       "^(https?:\\/\\/)?" + // protocol
         "((([a-z\\d]([a-z\\d-]*[a-z\\d])*)\\.)+[a-z]{2,}|" + // domain name
@@ -57,12 +58,10 @@ class UrlOpenerForm extends Component {
   };
 
   formatTextarea = (area) => {
-    if (area.children.length == 0) {
-      if (this.isValidURL(area.textContent)) {
-        area.style.color = "green";
-      } else {
-        area.style.color = "red";
-      }
+    if (this.isValidURL(area.textContent)) {
+      area.style.color = "green";
+    } else {
+      area.style.color = "red";
     }
     for (let i = 0; i < area.children.length; i++) {
       if (this.isValidURL(area.children[i].textContent)) {
