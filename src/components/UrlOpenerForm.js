@@ -93,9 +93,10 @@ class UrlOpenerForm extends Component {
       <form className="w-full">
             <div className="mb-4">
               <div
-                className="bg-white h-96 p-2  bg-gray-300"
+                className="bg-white h-96 p-2  bg-gray-300 overflow-auto"
                 contentEditable={true}
                 onInput={this.handleInput}
+                
               ></div>
             </div>
         <div className="flex justify-between">
