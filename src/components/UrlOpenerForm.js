@@ -5,22 +5,28 @@ class UrlOpenerForm extends Component {
     super(props);
   }
 
+  // the state of a component, which can be set using setState()
   state = {
     urls: [],
     number_of_urls: 0,
     number_of_valid_urls: 0,
-    wait_timer: 0,
+    wait_time: 0,
   };
 
+  // calculates sum of an array
   sum = (array) => {
     return array.reduce((a, b) => a + b, 0);
   };
 
+  // sets the wait time between opening urls
   setWaitTimer = (time_seconds) => {
-    this.state.wait_timer = time_seconds;
+    this.setState({
+      wait_time: time_seconds
+    })
   };
 
   // credits: https://stackoverflow.com/a/5717133
+  // checks if string is valid url (optional protocol)
   isValidURL = (str) => {
     str = str.trim();
     var pattern = new RegExp(
@@ -35,6 +41,7 @@ class UrlOpenerForm extends Component {
     return !!pattern.test(str);
   };
 
+  // checks if url starts with http, if not adds https
   addProtocolIfMissing = (url) => {
     if (url.toLowerCase().startsWith("http")) {
       return url;
@@ -43,6 +50,7 @@ class UrlOpenerForm extends Component {
     }
   };
 
+  // opens all urls from this.state.urls in new tabs
   open = () => {
     var urls = this.state.urls;
     let counter = 0;
@@ -53,12 +61,16 @@ class UrlOpenerForm extends Component {
           let handle = window.open(url, '_blank');
           handle.blur();
           window.focus();
-        }, this.state.wait_timer * 1000 * counter);
+        }, this.state.wait_time * 1000 * counter);
         counter += 1;
       }
     }
   };
 
+  // sind the textarea is an editable div, it can contain a string or childrens,
+  // this function checks if the content is an url
+  // and it checks if the contant of the children are valid urls
+  // and highlights valid urls in green
   formatTextarea = (area) => {
     if (this.isValidURL(area.textContent)) {
       area.style.color = "green";
@@ -74,6 +86,7 @@ class UrlOpenerForm extends Component {
     }
   };
 
+  // called after input in textarea, saves urls in state
   handleInput = (e) => {
     this.setState({
       urls: e.currentTarget.innerText

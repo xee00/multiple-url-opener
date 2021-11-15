@@ -9,6 +9,8 @@ class Slider extends Component {
     };
   }
 
+  // double truth: the value of the slide is saved as state value
+  // and given back to parent using the callback function updateValue
   handleChange = (e) => {
     this.setState({value: e.target.value})
     this.state.updateValue(e.target.value)

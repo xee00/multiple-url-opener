@@ -4,6 +4,7 @@ import "./styles/output.css";
 import Navbar from "./components/Navbar";
 import UrlOpenerForm from "./components/UrlOpenerForm";
 
+// the main component of the project
 class App extends React.Component {
   componentDidMount() {
     document.title = "MultiUrlOpener v1.0";
