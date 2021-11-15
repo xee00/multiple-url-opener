@@ -50,8 +50,7 @@ class UrlOpenerForm extends Component {
       let url = this.addProtocolIfMissing(urls[i]);
       if (this.isValidURL(url)) {
         setTimeout(function () {
-          window.open(url, '_blank').focus();
-          let handle = window.open(url);
+          let handle = window.open(url, '_blank');
           handle.blur();
           window.focus();
         }, this.state.wait_timer * 1000 * counter);

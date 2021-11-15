@@ -6,7 +6,7 @@ import UrlOpenerForm from "./components/UrlOpenerForm";
 
 class App extends React.Component {
   componentDidMount() {
-    document.title = "MultiUrlOpener";
+    document.title = "MultiUrlOpener v1.0";
   }
   render() {
     return (
