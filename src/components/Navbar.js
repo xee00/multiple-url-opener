@@ -5,7 +5,7 @@ export default function Navbar({ fixed }) {
   return (
     <>
       <nav className="relative flex flex-wrap items-center justify-between px-2 py-3 bg-gray-900 mb-10">
-        <div className="container px-4 mx-auto flex flex-wrap items-center justify-between max-w-6xl">
+        <div className="container mx-auto flex flex-wrap items-center justify-between w-11/12 lg:w-5/6 xl:w-4/6 2xl:w-3/6">
           <div className="w-full relative flex justify-between lg:w-auto lg:static lg:block lg:justify-start">
             <a
               className="text-sm font-bold leading-relaxed inline-block mr-4 py-2 whitespace-nowrap uppercase text-white"
